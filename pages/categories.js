@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { SWRConfig } from "swr";
 import { getCategories } from "../src/services/get-categories";
 import swrFetcher from "../src/lib/swr-fetcher";
+import CategoryList from "../src/components/CategoryList";
 
 export function getStaticProps() {
   const categories = getCategories();
@@ -14,10 +15,11 @@ export function getStaticProps() {
   };
 }
 
-export default function Categories() {
+export default function Categories({ fallback }) {
   return (
     <SWRConfig value={{ fetcher: swrFetcher, fallback }}>
       <Typography variant="h1">Kategorien</Typography>
+      <CategoryList />
     </SWRConfig>
   );
 }
