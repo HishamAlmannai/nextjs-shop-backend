@@ -4,8 +4,8 @@ import { getCategories } from "../src/services/get-categories";
 import swrFetcher from "../src/lib/swr-fetcher";
 import CategoryList from "../src/components/CategoryList";
 
-export function getStaticProps() {
-  const categories = getCategories();
+export async function getStaticProps() {
+  const categories = await getCategories();
   return {
     props: {
       fallback: {

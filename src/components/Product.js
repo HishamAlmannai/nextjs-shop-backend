@@ -14,12 +14,30 @@ export default function Product({
   price,
   category,
 }) {
+  /*
+
+  tags.map((tag) => console.log(tag));
+ <div>
+                <p>{description}</p>
+                <p>{category}</p>
+            </div>
+            <ul>
+                {tags.map((tag, index) => {
+                    return (
+                        <div key={index}>
+                            <li>{tag}</li>
+                        </div>
+                    );
+                })}
+            </ul> */
+
   return (
     <Card>
       <CardContent>
         <Typography>{name}</Typography>
         <Typography>{description}</Typography>
         <Typography>{tags}</Typography>
+
         <Typography>{price}</Typography>
         <Typography>{category}</Typography>
       </CardContent>
