@@ -6,7 +6,7 @@ export default function Home() {
       <Container maxWidth="xl">
         <Grid container spacing={4}>
           <Grid item xs={12}>
-            <Typography varaint="h1">Home</Typography>
+            <Typography varaint="h1">Welcome Home</Typography>
           </Grid>
         </Grid>
       </Container>
