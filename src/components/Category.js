@@ -29,8 +29,7 @@ export default function Category({ id, name, description }) {
       setEditValue(!editValue);
     } else {
       setEditValue(!editValue);
-      console.log(editValue);
-    }
+      }
   };
 
   return (

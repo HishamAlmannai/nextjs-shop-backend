@@ -4,7 +4,10 @@ import {
   CardActions,
   CardContent,
   Typography,
+  TextField,
 } from "@mui/material";
+import { useState } from "react";
+import { mutate } from "swr";
 
 export default function Product({
   id,
@@ -14,6 +17,32 @@ export default function Product({
   price,
   category,
 }) {
+  const [nameValue, setNameValue] = useState(name);
+  const [descriptionValue, setDescriptionValue] = useState(description);
+  const [tagsValue, setTagsValue] = useState(tags);
+  const [priceValue, setPriceValue] = useState(price);
+  const [editValue, setEditValue] = useState(false);
+
+  const submit = async (event) => {
+    event.preventDefault();
+    if (editValue) {
+      const response = await fetch("/api/product/edit", {
+        method: "PUT",
+        body: JSON.stringify({
+          id,
+          name: nameValue,
+          description: descriptionValue,
+          tags: tagsValue,
+          price: priceValue,
+        }),
+      });
+      mutate("/api/products");
+      setEditValue(!editValue);
+    } else {
+      setEditValue(!editValue);
+    }
+  };
+
   /*
 
   tags.map((tag) => console.log(tag));
@@ -34,16 +63,68 @@ export default function Product({
   return (
     <Card>
       <CardContent>
-        <Typography>{name}</Typography>
-        <Typography>{description}</Typography>
-        <Typography>{tags}</Typography>
-
-        <Typography>{price}</Typography>
-        <Typography>{category}</Typography>
+        {!editValue ? (
+          <>
+            <Typography>{name}</Typography>
+            <Typography>{description}</Typography>
+            <Typography>{tags}</Typography>
+            <Typography>{price}</Typography>
+            <Typography>{category}</Typography>
+          </>
+        ) : (
+          <>
+            <TextField
+              name="name"
+              label="name"
+              required
+              fullWidth
+              sx={{ marginTop: 1.5 }}
+              value={nameValue}
+              onChange={(event) => {
+                setNameValue(event.target.value);
+              }}
+            />
+            <TextField
+              name="description"
+              label="description"
+              required
+              fullWidth
+              sx={{ marginTop: 1.5 }}
+              value={descriptionValue}
+              onChange={(event) => {
+                setDescriptionValue(event.target.value);
+              }}
+            />
+            <TextField
+              name="tags"
+              label="tags"
+              required
+              fullWidth
+              sx={{ marginTop: 1.5 }}
+              value={tagsValue}
+              onChange={(event) => {
+                setTagsValue(event.target.value);
+              }}
+            />
+            <TextField
+              name="price"
+              label="price"
+              required
+              fullWidth
+              sx={{ marginTop: 1.5 }}
+              value={priceValue}
+              onChange={(event) => {
+                setPriceValue(event.target.value);
+              }}
+            />
+            <Typography>{category}</Typography>
+          </>
+        )}
       </CardContent>
 
       <CardActions>
-        <Button size="small">Edit</Button>
+        <Button size="small"onClick={submit}>
+          {!editValue ? "Edit" : "Save"}</Button>
         <Button size="small">Delete</Button>
       </CardActions>
     </Card>
