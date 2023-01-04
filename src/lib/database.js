@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const url = "mongodb://localhost:27017/shop-backend";
+const url = process.env.DB_CONNECTION;;
 
 export async function dbConnect() {
   try {

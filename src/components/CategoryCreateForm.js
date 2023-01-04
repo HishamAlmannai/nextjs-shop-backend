@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from "@mui/material";
+import { Card, Button, Grid, TextField, CardContent } from "@mui/material";
 import { useRouter } from "next/router";
 
 import { useState } from "react";
@@ -25,40 +25,44 @@ export default function CategoryCreateForm() {
     router.push("/categories");
   };
   return (
-    <>
-      <form onSubmit={submit}>
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <TextField
-              name="name"
-              label="name"
-              fullWidth
-              sx={{ marginTop: 1.5 }}
-              value={nameValue}
-              onChange={(event) => {
-                setNameValue(event.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name="description"
-              label="description"
-              fullWidth
-              rows={2}
-              value={descriptionValue}
-              onChange={(event) => {
-                setDescriptionValue(event.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained">
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-    </>
+    <Grid  sx="4">
+      <Card>
+        <CardContent>
+          <form onSubmit={submit}>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <TextField
+                  name="name"
+                  label="name"
+                  fullWidth
+                  sx={{ marginTop: 1.5 }}
+                  value={nameValue}
+                  onChange={(event) => {
+                    setNameValue(event.target.value);
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  name="description"
+                  label="description"
+                  fullWidth
+                  rows={2}
+                  value={descriptionValue}
+                  onChange={(event) => {
+                    setDescriptionValue(event.target.value);
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Button type="submit" variant="contained">
+                  Submit
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 }
