@@ -1,4 +1,4 @@
-import { Button, Grid, MenuItem, Select, TextField } from "@mui/material";
+import { Card, CardContent, Button, Grid, MenuItem, Select, TextField } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import useSWR from "swr";
@@ -40,58 +40,59 @@ export default function ProductCreateForm({ categories: data }) {
     router.push("/products");
   };
   return (
-    <>
-      <form onSubmit={submit}>
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <TextField
-              name="name"
-              label="name"
-              fullWidth
-              sx={{ marginTop: 1.5 }}
-              value={nameValue}
-              onChange={(event) => {
-                setNameValue(event.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name="description"
-              label="description"
-              fullWidth
-              rows={2}
-              value={descriptionValue}
-              onChange={(event) => {
-                setDescriptionValue(event.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name="tags"
-              label="tags"
-              fullWidth
-              rows={2}
-              value={tagsValue}
-              onChange={(event) => {
-                setTagsValue(event.target.value);
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name="price"
-              label="price"
-              fullWidth
-              rows={2}
-              value={priceValue}
-              onChange={(event) => {
-                setPriceValue(event.target.value);
-              }}
-            />
-          </Grid>
-          {/*      <Grid item xs={12}>
+    <Card sx={{ width: 1 / 2 }}>
+      <CardContent>
+        <form onSubmit={submit}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <TextField
+                name="name"
+                label="name"
+                fullWidth
+                sx={{ marginTop: 1.5 }}
+                value={nameValue}
+                onChange={(event) => {
+                  setNameValue(event.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="description"
+                label="description"
+                fullWidth
+                rows={2}
+                value={descriptionValue}
+                onChange={(event) => {
+                  setDescriptionValue(event.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="tags"
+                label="tags"
+                fullWidth
+                rows={2}
+                value={tagsValue}
+                onChange={(event) => {
+                  setTagsValue(event.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="price"
+                label="price"
+                fullWidth
+                rows={2}
+                value={priceValue}
+                onChange={(event) => {
+                  setPriceValue(event.target.value);
+                }}
+              />
+            </Grid>
+            {/*      <Grid item xs={12}>
             <TextField
               name="Category"
               label="category"
@@ -103,28 +104,29 @@ export default function ProductCreateForm({ categories: data }) {
               }}
             />
           </Grid> */}
-          <Grid item xs={12}>
-            <Select
-              fullWidth
-              value={categoryValue}
-              onChange={(event) => {
-                setCategoryValue(event.target.value);
-              }}
-            >
-              {data.map((option) => (
-                <MenuItem key={option.id} value={option.id}>
-                  {option.name}
-                </MenuItem>
-              ))}
-            </Select>
+            <Grid item xs={12}>
+              <Select
+                fullWidth
+                value={categoryValue}
+                onChange={(event) => {
+                  setCategoryValue(event.target.value);
+                }}
+              >
+                {data.map((option) => (
+                  <MenuItem key={option.id} value={option.id}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained">
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-    </>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

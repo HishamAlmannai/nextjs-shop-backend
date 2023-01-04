@@ -25,8 +25,8 @@ export default function CategoryCreateForm() {
     router.push("/categories");
   };
   return (
-    <Grid  sx="4">
-      <Card>
+    
+      <Card sx={{width: 1/2}}>
         <CardContent>
           <form onSubmit={submit}>
             <Grid container spacing={4}>
@@ -63,6 +63,6 @@ export default function CategoryCreateForm() {
           </form>
         </CardContent>
       </Card>
-    </Grid>
+    
   );
 }
