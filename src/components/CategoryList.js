@@ -4,6 +4,7 @@ import Category from "./Category";
 
 export default function CategoryList() {
   const { data } = useSWR("/api/categories");
+  
   return (
     <Grid container spacing="4">
       {data.map((category) => (
