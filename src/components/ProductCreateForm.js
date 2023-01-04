@@ -1,8 +1,15 @@
-import { Card, CardContent, Button, Grid, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Button,
+  Grid,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import useSWR from "swr";
-import Categories from "../../pages/categories";
 
 export default function ProductCreateForm({ categories: data }) {
   const [nameValue, setNameValue] = useState("");
@@ -20,12 +27,6 @@ export default function ProductCreateForm({ categories: data }) {
 
   const submit = async (event) => {
     event.preventDefault();
-
-    /*    
-    const nameValue = event.target.elements.name.value;
-    const descriptionValue = event.target.elements.content.value;
- */
-
     const response = await fetch("/api/product/create", {
       method: "POST",
       body: JSON.stringify({
@@ -92,18 +93,6 @@ export default function ProductCreateForm({ categories: data }) {
                 }}
               />
             </Grid>
-            {/*      <Grid item xs={12}>
-            <TextField
-              name="Category"
-              label="category"
-              fullWidth
-              rows={2}
-              value={categoryValue}
-              onChange={(event) => {
-                setCategoryValue(event.target.value);
-              }}
-            />
-          </Grid> */}
             <Grid item xs={12}>
               <Select
                 fullWidth

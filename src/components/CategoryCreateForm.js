@@ -25,44 +25,42 @@ export default function CategoryCreateForm() {
     router.push("/categories");
   };
   return (
-    
-      <Card sx={{width: 1/2}}>
-        <CardContent>
-          <form onSubmit={submit}>
-            <Grid container spacing={4}>
-              <Grid item xs={12}>
-                <TextField
-                  name="name"
-                  label="name"
-                  fullWidth
-                  sx={{ marginTop: 1.5 }}
-                  value={nameValue}
-                  onChange={(event) => {
-                    setNameValue(event.target.value);
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="description"
-                  label="description"
-                  fullWidth
-                  rows={2}
-                  value={descriptionValue}
-                  onChange={(event) => {
-                    setDescriptionValue(event.target.value);
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button type="submit" variant="contained">
-                  Submit
-                </Button>
-              </Grid>
+    <Card sx={{ width: 1 / 2 }}>
+      <CardContent>
+        <form onSubmit={submit}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <TextField
+                name="name"
+                label="name"
+                fullWidth
+                sx={{ marginTop: 1.5 }}
+                value={nameValue}
+                onChange={(event) => {
+                  setNameValue(event.target.value);
+                }}
+              />
             </Grid>
-          </form>
-        </CardContent>
-      </Card>
-    
+            <Grid item xs={12}>
+              <TextField
+                name="description"
+                label="description"
+                fullWidth
+                rows={2}
+                value={descriptionValue}
+                onChange={(event) => {
+                  setDescriptionValue(event.target.value);
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

@@ -5,9 +5,11 @@ import {
   CardContent,
   Typography,
   TextField,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import { useState } from "react";
-import { mutate } from "swr";
+import useSWR, { mutate } from "swr";
 
 export default function Product({
   id,
@@ -22,6 +24,9 @@ export default function Product({
   const [tagsValue, setTagsValue] = useState(tags);
   const [priceValue, setPriceValue] = useState(price);
   const [editValue, setEditValue] = useState(false);
+  const [categoryValue, setCategoryValue] = useState(category);
+
+  const { data } = useSWR("/api/categories");
 
   const submit = async (event) => {
     event.preventDefault();
@@ -34,6 +39,7 @@ export default function Product({
           description: descriptionValue,
           tags: tagsValue,
           price: priceValue,
+          category: categoryValue,
         }),
       });
       mutate("/api/products");
@@ -42,23 +48,6 @@ export default function Product({
       setEditValue(!editValue);
     }
   };
-
-  /*
-
-  tags.map((tag) => console.log(tag));
- <div>
-                <p>{description}</p>
-                <p>{category}</p>
-            </div>
-            <ul>
-                {tags.map((tag, index) => {
-                    return (
-                        <div key={index}>
-                            <li>{tag}</li>
-                        </div>
-                    );
-                })}
-            </ul> */
 
   return (
     <Card>
@@ -117,14 +106,30 @@ export default function Product({
                 setPriceValue(event.target.value);
               }}
             />
-            <Typography>{category}</Typography>
+            <p> {categoryValue.name}</p>
+            <Select
+              fullWidth
+              sx={{ marginTop: 1.5 }}
+              defaultValue={categoryValue}
+              value={categoryValue}
+              onChange={(event) => {
+                setCategoryValue(event.target.value);
+              }}
+            >
+              {data.map((option) => (
+                <MenuItem key={option.id} value={option.id}>
+                  {option.name}
+                </MenuItem>
+              ))}
+            </Select>
           </>
         )}
       </CardContent>
 
       <CardActions>
-        <Button size="small"onClick={submit}>
-          {!editValue ? "Edit" : "Save"}</Button>
+        <Button size="small" onClick={submit}>
+          {!editValue ? "Edit" : "Save"}
+        </Button>
         <Button size="small">Delete</Button>
       </CardActions>
     </Card>
