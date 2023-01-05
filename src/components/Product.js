@@ -106,7 +106,7 @@ export default function Product({
                 setPriceValue(event.target.value);
               }}
             />
-            <p> {categoryValue.name}</p>
+            <p> {categoryValue}</p>
             <Select
               fullWidth
               sx={{ marginTop: 1.5 }}

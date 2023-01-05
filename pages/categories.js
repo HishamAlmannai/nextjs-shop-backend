@@ -18,7 +18,7 @@ export async function getStaticProps() {
 export default function Categories({ fallback }) {
   return (
     <SWRConfig value={{ fetcher: swrFetcher, fallback }}>
-      <Typography variant="h1">Kategorien</Typography>
+      <Typography variant="h1" hidden>Kategorien</Typography>
       <CategoryList />
     </SWRConfig>
   );

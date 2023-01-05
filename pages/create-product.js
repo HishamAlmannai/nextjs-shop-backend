@@ -19,7 +19,7 @@ export async function getServerSideProps() {
 export default function CreateProduct({ categories }) {
   return (
     <>
-      <Typography variant="h1">Produkt hinzufügen</Typography>
+      <Typography variant="h1" hidden>Produkt hinzufügen</Typography>
       <ProductCreateForm categories={categories} />
     </>
   );
