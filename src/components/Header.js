@@ -8,7 +8,7 @@ export default function Header() {
   const buttonStyling = {
     color: "white",
     border: "none",
-    '&:target': 
+    '&:focus': 
     {color: "black"},
   };
 
